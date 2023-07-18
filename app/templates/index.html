@@ -1,0 +1,125 @@
+{% include 'header.html' %}
+
+<!-- Container Fluid -->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Requirements design</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Design</li>
+            <li class="breadcrumb-item active" aria-current="page">Requirements</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                {% for chapter_name, items in data_chapter.items() %}
+                {% set safe_chapter_name = chapter_name | replace(" ", "_") | replace("-", "_") | replace(".", "_") %}
+                <button style="margin-top: 6px;" id="{{ safe_chapter_name }}" class="btn btn-primary chapter-btn"
+                    type="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                    {{ items.chapter_id }} {{ chapter_name }}
+                </button>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="accordion">
+                {% for section_name, items in data_section.items() %}
+                {% set safe_chapter_name = items[0].chapter_name | replace(" ", "_") | replace("-", "_") | replace(".",
+                "_") %}
+                <div class="card {{ safe_chapter_name }}">
+                    <div class="card-header">
+                        <a class="collapsed card-link"  data-toggle="collapse" href="#collapse{{ loop.index }}">
+                            {{ section_name }}
+                        </a>
+                    </div>
+                    {% if loop.index == 1 %}
+                    <div id="collapse{{ loop.index }}" class="collapse show" data-parent="#accordion">
+                {% else %}
+                    <div id="collapse{{ loop.index }}" class="collapse" data-parent="#accordion">
+                {% endif %}
+                        <div class="card-body">
+                            <div class="card-header" style="border: 1px;">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush" id="myTable">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Requirement</th>
+                                                <th>Level</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in items %}
+                                            <tr>
+                                                <td><a href="#">{{ item.req_id }}</a></td>
+                                                <td>{{ item.req_description }}</td>
+                                                <td><span class="badge badge-success">{{ item.level1 }}{{ item.level2
+                                                        }}{{ item.level3 }}</span></td>
+                                                <td><button class="btn btn-sm btn-primary" id="btn{{ loop.index }}"
+                                                        onclick="saveToLocalStorage(event);">Add</button>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<button onclick="updateLocalStorageData()" type="button" class="btn btn-info fixed-right-corner" data-toggle="modal" data-target="#exampleModalScrollable"
+    id="#modalScroll">Show requirements</button>
+
+
+<!-- Modal Scrollable -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content" style="min-width: 250%; align-self: auto;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Your list so far!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Requirement</th>
+                                <th>Level</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="localStorageData"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="exportToMarkdownAndCopy()" data-dismiss="modal">Export to Markdown</button>
+                <button type="button" class="btn btn-primary" onclick="exportToCSVAndCopy()" data-dismiss="modal">Export to CSV</button>
+                <button type="button" class="btn btn-primary" onclick="exportToPlainTextAndCopy()" data-dismiss="modal">Export to Plaintext</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
