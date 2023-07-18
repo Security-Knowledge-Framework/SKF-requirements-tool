@@ -2,14 +2,9 @@
 
 <div class="container" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Requirements design</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">Design</li>
-            <li class="breadcrumb-item active" aria-current="page">Requirements</li>
-        </ol>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding-top: 15px;">
         <div class="col-lg-12">
             <p>
                 {% for chapter_name, items in data_chapter.items() %}
@@ -21,7 +16,20 @@
                 {% endfor %}
             </p>
         </div>
+
     </div>
+
+    <form class="navbar-search">
+      <div class="input-group">
+        <input type="text" id="myInput" onkeyup="filterResults()" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
+          aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search fa-sm"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
 
     <div class="row">
