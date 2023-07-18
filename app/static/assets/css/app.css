@@ -1,0 +1,26 @@
+.navbar-nav {
+    display: none;
+}
+
+body {
+
+    /* Reset default margin and padding */
+    margin: 0;
+    padding: 0;
+
+    /* Set full height */
+    min-height: 100vh;
+
+}
+
+#wrapper {
+    min-height: 100vh;
+}
+
+
+.fixed-right-corner {
+    position: fixed;
+    bottom: 80px; /* Adjust spacing here */
+    right: 30px; /* Adjust spacing here */
+    z-index: 9999; /* Ensures the button stays on top of other elements */
+}

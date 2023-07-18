@@ -1,7 +1,6 @@
 {% include 'header.html' %}
 
-<!-- Container Fluid -->
-<div class="container-fluid" id="container-wrapper">
+<div class="container" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Requirements design</h1>
         <ol class="breadcrumb">
@@ -62,7 +61,7 @@
                                                 <td><span class="badge badge-success">{{ item.level1 }}{{ item.level2
                                                         }}{{ item.level3 }}</span></td>
                                                 <td><button class="btn btn-sm btn-primary" id="btn{{ loop.index }}"
-                                                        onclick="saveToLocalStorage(event);">Add</button>
+                                                        onclick="saveToLocalStorage(event);">Select</button>
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -82,8 +81,8 @@
 </div>
 
 
-<button onclick="updateLocalStorageData()" type="button" class="btn btn-info fixed-right-corner" data-toggle="modal" data-target="#exampleModalScrollable"
-    id="#modalScroll">Show requirements</button>
+<button onclick="updateLocalStorageData()" type="button" class="btn btn-secondary fixed-right-corner" data-toggle="modal" data-target="#exampleModalScrollable"
+    id="#modalScroll">Show selection (<span id="selectedItemCount"></span>)</button>
 
 
 <!-- Modal Scrollable -->
@@ -116,7 +115,7 @@
                 <button type="button" class="btn btn-primary" onclick="exportToMarkdownAndCopy()" data-dismiss="modal">Export to Markdown</button>
                 <button type="button" class="btn btn-primary" onclick="exportToCSVAndCopy()" data-dismiss="modal">Export to CSV</button>
                 <button type="button" class="btn btn-primary" onclick="exportToPlainTextAndCopy()" data-dismiss="modal">Export to Plaintext</button>
-                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary" style="color:black" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
