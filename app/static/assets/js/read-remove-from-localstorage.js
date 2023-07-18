@@ -44,6 +44,9 @@ function removeFromLocalStorage(index) {
     // Update the LocalStorage with the modified items array
     localStorage.setItem('items', JSON.stringify(items));
 
+    updateItemCounter(items);
+
+
     // Update the displayed table by re-rendering the HTML content
     var htmlContent = '';
     var tbody = document.querySelector("#localStorageData");

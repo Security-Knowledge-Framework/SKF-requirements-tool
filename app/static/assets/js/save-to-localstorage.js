@@ -1,3 +1,11 @@
+function updateItemCounter(items) {
+    const counter = document.getElementById("selectedItemCount");
+    console.log(counter, items.length);
+    if(counter) {
+        counter.innerText = items.length;
+    }
+}
+
 function saveToLocalStorage(event) {
     // Get the clicked button from the event
     var button = event.target;
@@ -31,12 +39,17 @@ function saveToLocalStorage(event) {
 
     // Save the items to LocalStorage
     localStorage.setItem('items', JSON.stringify(items));
+
+    updateItemCounter(items);
 }
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Get the stored items from LocalStorage
     var storedItems = localStorage.getItem('items');
     var items = storedItems ? JSON.parse(storedItems) : [];
+
+    updateItemCounter(items);
 
     // Get all rows in the table, assuming your table has an id of 'myTable'
     var rows = document.getElementById('myTable').rows;

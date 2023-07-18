@@ -61,7 +61,7 @@
                                                 <td><span class="badge badge-success">{{ item.level1 }}{{ item.level2
                                                         }}{{ item.level3 }}</span></td>
                                                 <td><button class="btn btn-sm btn-primary" id="btn{{ loop.index }}"
-                                                        onclick="saveToLocalStorage(event);">Add</button>
+                                                        onclick="saveToLocalStorage(event);">Select</button>
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -81,8 +81,8 @@
 </div>
 
 
-<button onclick="updateLocalStorageData()" type="button" class="btn btn-info fixed-right-corner" data-toggle="modal" data-target="#exampleModalScrollable"
-    id="#modalScroll">Show requirements</button>
+<button onclick="updateLocalStorageData()" type="button" class="btn btn-secondary fixed-right-corner" data-toggle="modal" data-target="#exampleModalScrollable"
+    id="#modalScroll">Show selection (<span id="selectedItemCount"></span>)</button>
 
 
 <!-- Modal Scrollable -->
